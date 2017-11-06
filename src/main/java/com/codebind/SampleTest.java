@@ -1,7 +1,7 @@
 package com.codebind;
 
 import org.testng.annotations.Test;
-
+ 
 public class SampleTest { 
 	
 	@Test
