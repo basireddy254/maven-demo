@@ -12,7 +12,7 @@ public class TestExample {
 		System.out.println("TestExample.test1()");
 	}
 
-	@Test
+	@Test(enabled = false)
 	public void ctest2() {
 		System.out.println("TestExample.test2()");
 	}
