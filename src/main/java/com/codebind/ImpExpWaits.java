@@ -1,20 +1,23 @@
 package com.codebind;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.testng.annotations.AfterTest;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class GmailLoginTest {
-
-	WebDriver driver;
+public class ImpExpWaits {
+	static WebDriver driver;
 
 	@Test
-	@Parameters({"browser"})
+	@Parameters("browser")
 	public void openBrowser(String browser) {
 		if (browser.equalsIgnoreCase("firefox")) {
 			System.setProperty("webdriver.gecko.driver",
@@ -31,38 +34,18 @@ public class GmailLoginTest {
 		}
 
 		driver.get("https://www.gmail.com");// open application
+		driver.manage().timeouts().implicitlyWait(300, TimeUnit.SECONDS);
 		driver.manage().window().maximize();// to maximize the window
 	}
 
-	@Test(dependsOnMethods = "openBrowser")
-	@Parameters("username")
-	public void enterValidUsername(String username) throws InterruptedException {
-		openBrowser("IE");
-		driver.findElement(By.cssSelector("input[id='identifierId']")).sendKeys(username);
-		driver.findElement(By.cssSelector("span[class='RveJvd snByac']")).click();
-		Thread.sleep(4000);
-
-	}
-
-	@Test(dependsOnMethods = "enterValidUsername")
-	@Parameters("password")
-	public void enterInvalidPwd(String password) {
-		driver.findElement(By.cssSelector("input[aria-label='Enter your password']")).sendKeys(password);
-		driver.findElement(By.cssSelector("span[class='RveJvd snByac']")).click();
-	}
-
-	@Test(dependsOnMethods = "enterInvalidPwd")
-	public void validateErrorMsg() {
-		String errMsg = driver.findElement(By.cssSelector("div[class='dEOOab RxsGPe']")).getText();
-		System.err.println(errMsg);
-		org.testng.Assert.assertEquals(errMsg, "Wrong password");
-
-	}
-	
-	@AfterTest
-	public void closeBrowser(){
-		driver.close();
+	@Test(dependsOnMethods="openBrowser")
+	public void enterValidUsername() throws InterruptedException {
+		driver.findElement(By.cssSelector("input[id='identifierId']")).sendKeys("java");
 		
+		WebDriverWait wait = new WebDriverWait(driver, 15,10);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[class='ZFr60d CeoRYcasdfasf']")));
+		
+		driver.findElement(By.cssSelector("div[class='123ZFr60d CeoRYc']")).click();
 	}
 
 }

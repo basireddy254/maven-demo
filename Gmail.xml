@@ -5,8 +5,6 @@
 	<parameter name="username" value="chinnareddy.putha"></parameter>
 	<parameter name="password" value="asfsdafasd"></parameter>
 
-
-
 	<test name="Login_FF">
 		<parameter name="browser" value="firefox"></parameter>
 		<classes>
