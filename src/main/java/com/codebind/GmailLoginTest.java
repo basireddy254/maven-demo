@@ -17,16 +17,13 @@ public class GmailLoginTest {
 	@Parameters({"browser"})
 	public void openBrowser(String browser) {
 		if (browser.equalsIgnoreCase("firefox")) {
-			System.setProperty("webdriver.gecko.driver",
-					"C:\\Users\\UC202376\\git\\new\\1p-ui-automation\\drivers\\geckodriver.exe");
+			System.setProperty("webdriver.gecko.driver","drivers/geckodriver.exe");
 			driver = new FirefoxDriver();// to launch the FF browser
 		} else if (browser.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver",
-					"C:\\Users\\UC202376\\git\\new\\1p-ui-automation\\drivers\\chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver","drivers/chromedriver.exe");
 			driver = new ChromeDriver();// to launch the Chrome browser
 		} else {
-			System.setProperty("webdriver.ie.driver",
-					"C:\\Users\\UC202376\\git\\new\\1p-ui-automation\\drivers\\IEDriverServer.exe");
+			System.setProperty("webdriver.ie.driver","driver/IEDriverServer.exe");
 			driver = new InternetExplorerDriver();// to launch the IE browser
 		}
 
