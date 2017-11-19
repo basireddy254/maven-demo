@@ -13,7 +13,7 @@ public class GmailLoginTest {
 
 	WebDriver driver;
 
-	@Test
+	@Test 
 	@Parameters({"browser"})
 	public void openBrowser(String browser) {
 		if (browser.equalsIgnoreCase("firefox")) {
