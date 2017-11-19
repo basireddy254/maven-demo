@@ -6,12 +6,21 @@
 		<classes>
 			<class name="com.codebind.ActionsTest" />
 		</classes>
-	</test> -->
+	</test>
 
 	<test name="dragAndDrop">
 		<parameter name="browser" value="chrome"></parameter>
 		<classes>
 			<class name="com.codebind.ActionsDragAndDropTest" />
+		</classes>
+	</test> -->
+	
+	<test name="keyboard_Events">
+		<parameter name="browser" value="chrome"></parameter>
+		<parameter name="username" value="chinnareddy.putha"/>
+		<parameter name="password" value="afjasdlkfj"/>
+		<classes>
+			<class name="com.codebind.KeyboardEventsTest" />
 		</classes>
 	</test>
 
