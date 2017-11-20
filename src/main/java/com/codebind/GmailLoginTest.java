@@ -34,9 +34,8 @@ public class GmailLoginTest {
 	@Test(dependsOnMethods = "openBrowser")
 	@Parameters("username")
 	public void enterValidUsername(String username) throws InterruptedException {
-		openBrowser("IE");
-		driver.findElement(By.cssSelector("input[id='identifierId']")).sendKeys(username);
-		driver.findElement(By.cssSelector("span[class='RveJvd snByac']")).click();
+		driver.findElement(By.cssSelector(Locators.GMAIL_USERNAME_CSS)).sendKeys(username);
+		driver.findElement(By.cssSelector(Locators.GMAIL_NEXT_CSS)).click();
 		Thread.sleep(4000);
 
 	}
@@ -44,8 +43,8 @@ public class GmailLoginTest {
 	@Test(dependsOnMethods = "enterValidUsername")
 	@Parameters("password")
 	public void enterInvalidPwd(String password) {
-		driver.findElement(By.cssSelector("input[aria-label='Enter your password']")).sendKeys(password);
-		driver.findElement(By.cssSelector("span[class='RveJvd snByac']")).click();
+		driver.findElement(By.cssSelector(Locators.GMAIL_PASSWORD_CSS)).sendKeys(password);
+		driver.findElement(By.cssSelector(Locators.GMAIL_NEXT_CSS)).click();
 	}
 
 	@Test(dependsOnMethods = "enterInvalidPwd")
