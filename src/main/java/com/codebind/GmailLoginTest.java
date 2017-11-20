@@ -28,7 +28,7 @@ public class GmailLoginTest {
 		}
 
 		driver.get("https://www.gmail.com");// open application
-		driver.manage().window().maximize();// to maximize the window
+		driver.manage().window().maximize();// to maximize the window 
 	}
 
 	@Test(dependsOnMethods = "openBrowser")
