@@ -17,7 +17,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class JavascriptexecutorTest {
-	static WebDriver driver;
+	static WebDriver driver; 
 
 	public void openBrowser(String browser) {
 		if (browser.equalsIgnoreCase("firefox")) {
