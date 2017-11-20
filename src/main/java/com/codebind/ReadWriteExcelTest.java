@@ -13,7 +13,7 @@ public class ReadWriteExcelTest {
 
 	public static void main(String[] args) throws Exception {
 		File f= new File("xls/Test.xlsx");// to load file
-		FileInputStream fis =new FileInputStream(f);// read the file
+		FileInputStream fis =new FileInputStream(f);// read the file 
 		
 		//convert the file workbook format
 		XSSFWorkbook wb= new XSSFWorkbook(fis);
@@ -24,6 +24,7 @@ public class ReadWriteExcelTest {
 		XSSFCell cell2=row.getCell(1);
 		String pwd=cell2.toString();//password
 		System.out.println("username-->"+un+"pwd-->"+pwd);
+		
 		
 		
 		FileOutputStream fos = new FileOutputStream(f);//write the data to the file
