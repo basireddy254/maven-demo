@@ -10,7 +10,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -33,56 +35,52 @@ public class PHPtravels2 {
 		}
 	}
 
-	@Test(dependsOnMethods = "browserOpen") 
+	@Test(dependsOnMethods = "browserOpen")
 	public void openURLandlogin() throws Throwable {
 		driver.get("http://www.phptravels.net/supplier");
 		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
-		driver.findElement(By.xpath("//input[@type='text']")).sendKeys("supplier@phptravels.com");
+		driver.findElement(By.xpath(Locators.PHP_USERNAME_XPATH)).sendKeys("supplier@phptravels.com");
 		driver.findElement(By.xpath("//input[@type='password']")).sendKeys("demosupplier");
 		driver.findElement(By.xpath("//button[@type='submit']")).click();
 
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.findElement(By.xpath("//button[@data-target='#quickbook']")).click();
 
-		Thread.sleep(3000);
 		WebElement serv = driver.findElement(By.xpath("//select[@id='servicetype']"));
 		Select service = new Select(serv);
 		service.selectByVisibleText("Hotels");
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
 		driver.findElement(By.xpath("//div[@class='modal-footer']/button[@type='submit']")).click();
 
-		driver.findElement(By.xpath("//div[@class='col-md-3']/input[@name='checkin']")).sendKeys("09/11/2017");
-		driver.findElement(By.xpath("//div[@class='col-md-3']/input[@name='checkout']")).sendKeys("10/11/2017");
+		driver.findElement(By.xpath("//div[@class='col-md-3']/input[@name='checkin']")).sendKeys("21/11/2017");
+		driver.findElement(By.xpath("//div[@class='col-md-3']/input[@name='checkout']")).sendKeys("22/11/2017");
 
 		WebElement cho = driver.findElement(By.xpath("//select[@name='item']"));
 		Select chose = new Select(cho);
 		chose.selectByVisibleText(" Hyatt Regency Perth ");
 
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		WebElement roo = driver.findElement(By.xpath("//select[@id='poprooms']"));
 		Select room = new Select(roo);
 		room.selectByVisibleText("Standard Room");
 
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		WebElement roocou = driver.findElement(By.xpath("//select[@name='roomscount']"));
 		Select roomcoun = new Select(roocou);
 		roomcoun.selectByVisibleText("2");
 
-		Thread.sleep(3000);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type=checkbox]")));
 
-		List<WebElement> sesl = driver.findElements(By.cssSelector("input[type='checkbox']"));
-
-		for (int i = 0; i < sesl.size(); i++) {
+		List<WebElement> sesl = driver.findElements(By.cssSelector("input[type=checkbox]"));
+		for (int i = 0; i <= sesl.size(); i++) {
 			sesl.get(i).click();
 			Thread.sleep(3000);
 		}
 
-		driver.findElement(By.xpath("//input[@type='submit']")).click();
+		driver.findElement(By.xpath("//input[@type='submit']")).submit();
 
 		String parent = driver.getWindowHandle();
 
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.findElement(By.xpath("//i[@class='fa fa-search-plus']")).click();
 
 		Set<String> allids = driver.getWindowHandles();
@@ -92,8 +90,10 @@ public class PHPtravels2 {
 			if (!(child.equals(parent))) {
 				driver.switchTo().window(child);
 				System.out.println("in chaild window");
+				WebDriverWait wa = new WebDriverWait(driver, 15, 10);
+				wa.until(ExpectedConditions
+						.visibilityOfElementLocated(By.cssSelector("//button[@class='btn btn-default arrivalpay']")));
 				driver.findElement(By.xpath("//button[@class='btn btn-default arrivalpay']")).click();
-				Thread.sleep(5000);
 				driver.switchTo().alert().accept();
 				driver.close();
 			}

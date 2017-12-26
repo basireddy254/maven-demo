@@ -17,8 +17,5 @@
 		<classes>
 			<class name="com.codebind.GmailLoginTest" />
 		</classes>
-	</test>
-
-
-	<!-- Login -->
+	</test><!-- Login -->
 </suite> <!-- Gmail -->

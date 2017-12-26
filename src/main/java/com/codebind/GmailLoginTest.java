@@ -46,7 +46,6 @@ public class GmailLoginTest {
 		driver.findElement(By.cssSelector(Locators.GMAIL_PASSWORD_CSS)).sendKeys(password);
 		driver.findElement(By.cssSelector(Locators.GMAIL_NEXT_CSS)).click();
 	}
-
 	@Test(dependsOnMethods = "enterInvalidPwd")
 	public void validateErrorMsg() {
 		String errMsg = driver.findElement(By.cssSelector("div[class='dEOOab RxsGPe']")).getText();

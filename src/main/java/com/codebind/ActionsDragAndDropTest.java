@@ -43,7 +43,7 @@ public class ActionsDragAndDropTest {
 		act.dragAndDrop(sourceWebElement, destWebElement).build().perform();
 		
 		
-		
+	
 	}
 
 }

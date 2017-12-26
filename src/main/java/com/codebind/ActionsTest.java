@@ -39,6 +39,7 @@ public class ActionsTest {
 		
 		Actions act = new Actions(driver);
 		act.moveToElement(ele).build().perform();
+		act.contextClick(ele).build().perform();
 		
 		
 		
